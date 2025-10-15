@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: real-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: real-app
+  template:
+    metadata:
+      labels:
+        app: real-app
+    spec:
+      containers:
+      - name: real-app-container
+        image: zaarahirani/real-app:latest
+        ports:
+        - containerPort: 5000

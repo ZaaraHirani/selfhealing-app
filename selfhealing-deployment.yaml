@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selfhealing-app
+  labels:
+    app: selfhealing-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: selfhealing-app
+  template:
+    metadata:
+      labels:
+        app: selfhealing-app
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '5000'
+    spec:
+      containers:
+        - name: selfhealing-app
+          image: zaarahirani/selfhealing-app:latest
+          ports:
+            - containerPort: 5000

@@ -1,0 +1,11 @@
+FROM node:18-alpine
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+COPY . .
+
+# !!! CHECK THIS: Is your app's port 3000? If not, change it here.
+EXPOSE 3000
+
+# !!! CHECK THIS: Is `node server.js` the command to start it? If not, change it here.
+CMD [ "node", "server.js" ]
